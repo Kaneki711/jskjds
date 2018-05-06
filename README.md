@@ -35,7 +35,7 @@ Cara Install Self ProtectPy3 di c9:
 - python3 protectpy3.py 
 
 
-Credit By Eva. 
+Credit By Dee 
 - Add My ID LINE : 〘 https://line.me/ti/p/ppgIZ0JLDW 〙
 
 
@@ -46,4 +46,4 @@ Thx To :
 - HELLO-WORLD
 - Nadya Sutjiadi
 - iiipuuul
-- wongmu
+- Eva wongmu
