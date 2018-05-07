@@ -1,12 +1,8 @@
-# Protect 10 Assist Py3
-Fungsinya? 
-Kelebihan : 
-1. Protect Group Line Pastinya 
-2. Command Bisa Dipakai oleh Orang Admin
-3. Bot Tidak Saling Kick Ketika Ada Yang Terkick
-
-- Kelemahan: 
-- BOT Tidak Aktif Ketika Bot Induk Tidak ada di Dalam Group 
+# DnA Bot LinePy
+Account :
+1 Admin
+2.11 Bot Assist
+Total 12
 
 Cara Instal di termux: 
 - pkg install python3 
