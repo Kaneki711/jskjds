@@ -1,7 +1,7 @@
 # DnA Bot LinePy
 Account :
 1 Admin,
-2 11 Bot Assist,
+11 Bot Assist,
 Total : 12
 
 Cara Instal di termux: 
