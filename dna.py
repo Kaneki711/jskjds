@@ -1059,7 +1059,7 @@ def bot(op):
                 ririn.findAndAddContactsByMid(midd)
                 ririn.inviteIntoGroup(msg.to,[midd])
             elif msg.text in ["Invite","invite"]:
-               if msg.from_ in admin:
+               if msg._from in admin:
                 wait["invite"] = True
                 ririn.sendText(msg.to,"sᴇɴᴅ ᴄᴏɴᴛᴀᴄᴛ")                
             elif msg.text in ["Glist"]:
