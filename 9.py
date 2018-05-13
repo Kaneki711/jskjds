@@ -134,7 +134,7 @@ helpMessage ="""
 ╠❂➣ ᴀᴅᴍɪɴ ᴀᴅᴅ 「ᴍᴇɴᴛɪᴏɴ」
 ╠❂➣ ᴀᴅᴍɪɴ ʀᴇᴍᴏᴠᴇ 「ᴍᴇɴᴛɪᴏɴ」
 ╠❂➣ ʀᴇsᴘᴏɴᴛᴀɢ 「ᴏɴ/ᴏғғ」
-╠❂➣  ᴋɪᴄᴋ ᴛᴀɢ 「ᴏɴ/ᴏғғ」
+╠❂➣ ᴋɪᴄᴋ ᴛᴀɢ 「ᴏɴ/ᴏғғ」
 ╠════════════════════╗
                 Credits by : D̶e̶e̶ ✯
 ╚════════════════════╝
@@ -267,7 +267,7 @@ def sendMessageWithMention(to, mid):
         logError(error)
 #------------------Detect Mention-----------------#
         if 'MENTION' in msg.contentMetadata.keys() != None:
-        	if wait["detectMention"] == True:
+        	if wait['detectMention'] == True:
         		contact = ririn.getContact(msg._from)
         		cName = contact.displayName
         		balas = ["sᴇᴋᴀʟɪ ʟᴀɢɪ ɴɢᴇ ᴛᴀɢ ɢᴡ sᴜᴍᴘᴀʜɪɴ ᴊᴏᴍʙʟᴏ sᴇᴜᴍᴜʀ ʜɪᴅᴜᴘ!","ᴅᴏɴᴛ ᴛᴀɢ!! ʟᴀɢɪ sɪʙᴜᴋ",cName + " ɴɢᴀᴘᴀɪɴ ɴɢᴇᴛᴀɢ?",cName + " ɴɢɢᴀᴋ ᴜsᴀʜ ᴛᴀɢ-ᴛᴀɢ! ᴋᴀʟᴏ ᴘᴇɴᴛɪɴɢ ʟᴀɴɢsᴜɴɢ ᴘᴄ ᴀᴊᴀ","ᴛᴀɢ ᴍᴜʟᴜ ʟᴏ ᴀɴᴊɪʀʀ!","ᴅɪᴀ ʟᴀɢɪ ᴏғғ", cName + " ᴋᴇɴᴀᴘᴀ ᴛᴀɢ? ᴋᴀɴɢᴇɴ?","ᴅɪᴀ ʟᴀɢɪ ᴛɪᴅᴜʀ\nᴊᴀɴɢᴀɴ ᴅɪ ᴛᴀɢ " + cName, "ᴊᴀɴɢᴀɴ sᴜᴋᴀ ᴛᴀɢ ɢᴜᴀ " + cName, "ᴋᴀᴍᴜ sɪᴀᴘᴀ " + cName + "?", "ᴀᴅᴀ ᴘᴇʀʟᴜ ᴀᴘᴀ " + cName + "?","ᴡᴏɪɪ " + cName + " ᴊᴀɴɢᴀɴ ɴɢᴇᴛᴀɢ, ʀɪɪʙᴜᴛ!"]
@@ -284,10 +284,10 @@ def sendMessageWithMention(to, mid):
         				break
 #--------------------Kick Mention-------------------#
         if 'MENTION' in msg.contentMetadata.keys() != None:
-        	if wait["kickMention"] == True:
+        	if wait['kickMention'] == True:
         		contact = ririn.getContact(msg._from)
         		cName = contact.displayName
-        		balas = ["Aku Bilang Jangan Ngetag Lagi " + cName + "\nAku Kick Kamu! Sorry, Byee!!!"]
+        		balas = ["ᴀᴋᴜ ʙɪʟᴀɴɢ ᴊᴀɴɢᴀɴ ɴɢᴇᴛᴀɢ ʟᴀɢɪ " + cName + "\nᴀᴋᴜ ᴋɪᴄᴋ ᴋᴀᴍᴜ! sᴏʀʀʏ, ʙʏᴇᴇ!!!"]
         		ret_ = random.choice(balas)                     
         		name = re.findall(r'@(\w+)', msg.text)
         		mention = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -315,7 +315,7 @@ def bot(op):
                     ririn.sendText(op.param1,str(wait["message"]))
 #--------------Notif Update Group--------------#
         if op.type == 11:
-            if wait["ProtectGroup"] == True:
+            if wait["ProtectQR"] == True:
               if op.param2 not in admin:
                  if op.param2 not in Bots:
                  	X = ririn.getGroup(op.param1)
@@ -508,7 +508,7 @@ def bot(op):
                     ririn.cancelGroupInvitation(op.param1, matched_list)    
 #-------------Invite User By Contact-------------#
             if msg.contentType == 13:
-                if wait['invite'] == True:
+                if wait["invite"] == True:
                     _name = msg.contentMetadata["displayName"]
                     invite = msg.contentMetadata["mid"]
                     groups = ririn.getGroup(msg.to)
@@ -526,15 +526,15 @@ def bot(op):
                             try:
                                 ririn.findAndAddContactsByMid(target)
                                 ririn.inviteIntoGroup(msg.to,[target])
-                                ririn.sendText(msg.to,'Invite ' + _name)
-                                wait['invite'] = False
+                                ririn.sendText(msg.to,"Invite " + _name)
+                                wait["invite"] = False
                                 break                              
                             except:             
-                                    kr.sendText(msg.to,'ᴇʀʀᴏʀ')
-                                    wait['invite'] = False
+                                    ririn.sendText(msg.to,'ᴇʀʀᴏʀ')
+                                    wait["invite"] = False
                                     break
             else:
-                if wait['invite'] == True:
+                if wait["invite"] == True:
                     _name = msg.contentMetadata["displayName"]
                     invite = msg.contentMetadata["mid"]
                     groups = dna1.getGroup(msg.to)
@@ -542,7 +542,7 @@ def bot(op):
                     targets = []
                     for s in groups.members:
                         if _name in s.displayName:
-                            dna1.sendText(msg.to, _name + " sᴜᴅᴀʜ ᴅɪ ᴅᴀʟᴀᴍ ɢʀᴜᴘ")
+                            dna1.sendText(msg.to, _name + "sᴜᴅᴀʜ ᴅɪ ᴅᴀʟᴀᴍ ɢʀᴜᴘ")
                         else:
                             targets.append(invite)
                     if targets == []:
@@ -552,12 +552,12 @@ def bot(op):
                             try:
                                 dna1.findAndAddContactsByMid(target)
                                 dna1.inviteIntoGroup(msg.to,[target])
-                                dna1.sendText(msg.to,'Invite ' + _name)
-                                wait['invite'] = False
+                                dna1.sendText(msg.to,"Invite " + _name)
+                                wait["invite"] = False
                                 break                              
                             except:             
                                     dna1.sendText(msg.to,'ᴇʀʀᴏʀ')
-                                    wait['invite'] = False
+                                    wait["invite"] = False
                                     break
 #----------------Notif Leave Group----------------#
         if op.type == 15:
@@ -572,7 +572,7 @@ def bot(op):
         if op.type == 17:
         	dan = ririn.getContact(op.param2)
         	tgb = ririn.getGroup(op.param1)
-        	ririn.sendMessage(op.param1, "ʜᴏʟᴀ @!{} \nᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ɢʀᴏᴜᴘ {} \nᴊᴀɴɢᴀɴ ʟᴜᴘᴀ ᴄʜᴇᴄᴋ ɴᴏᴛᴇ ʏᴀ \nᴀᴡᴀs ᴋᴀʟᴀᴜ ʙᴀᴘᴇʀᴀɴ😘😘😘".format(str(dan.displayName),str(tgb.name)))
+        	ririn.sendMessage(op.param1, "ʜᴏʟᴀ {} \nᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ɢʀᴏᴜᴘ {} \nᴊᴀɴɢᴀɴ ʟᴜᴘᴀ ᴄʜᴇᴄᴋ ɴᴏᴛᴇ ʏᴀ \nᴀᴡᴀs ᴋᴀʟᴀᴜ ʙᴀᴘᴇʀᴀɴ😘😘😘".format(str(dan.displayName),str(tgb.name)))
         	ririn.sendContact(op.param1, op.param2)
         	ririn.sendImageWithURL(op.param1, "http://dl.profile.line-cdn.net{}".format(dan.picturePath))
 #-----------------User Join Kicked-----------------#
@@ -929,40 +929,6 @@ def bot(op):
 #------------------Receive Message-----------------#   
         if op.type == 26:
             msg = op.message
-
-
-
-            if wait["alwaysRead"] == True:
-                if msg.toType == 0:
-                    ririn.sendChatChecked(msg._from,msg.id)
-                else:
-                    ririn.sendChatChecked(msg.to,msg.id)
-                    
-        if msg.contentType == 16:
-        	if wait["likeOn"] == True:
-        		url = msg.contentMetadata["postEndUrl"]
-        		ririn.like(url[25:58], url[66:], likeType=1005)
-        		dna1.like(url[25:58], url[66:], likeType=1002)
-        		dna2.like(url[25:58], url[66:], likeType=1004)
-        		dna3.like(url[25:58], url[66:], likeType=1003)
-        		dna4.like(url[25:58], url[66:], likeType=1001)
-        		dna5.like(url[25:58], url[66:], likeType=1005)
-        		dna6.like(url[25:58], url[66:], likeType=1002)
-        		dna7.like(url[25:58], url[66:], likeType=1004)
-        		dna8.like(url[25:58], url[66:], likeType=1003)
-        		dna9.like(url[25:58], url[66:], likeType=1001)
-        		ririn.comment(url[25:58], url[66:], wait["comment"])
-        		dna1.comment(url[25:58], url[66:], wait["comment"])
-        		dna2.comment(url[25:58], url[66:], wait["comment"])
-        		dna3.comment(url[25:58], url[66:], wait["comment"])
-        		dna4.comment(url[25:58], url[66:], wait["comment"])
-        		dna5.comment(url[25:58], url[66:], wait["comment"])
-        		dna6.comment(url[25:58], url[66:], wait["comment"])
-        		dna7.comment(url[25:58], url[66:], wait["comment"])
-        		dna8.comment(url[25:58], url[66:], wait["comment"])
-        		dna9.comment(url[25:58], url[66:], wait["comment"])
-        		ririn.sendText(msg.to,"Like Success")
-        		wait['likeOn'] = False
 #------------------Receive Come Bye---------------#
         if op.type == 26:
             msg = op.message
@@ -1366,8 +1332,8 @@ def bot(op):
                 if wait["autoAdd"] == True: md+="╠❂➣ ᴀᴜᴛᴏ ᴀᴅᴅ : ᴏɴ [🔵]\n"
                 else:md+="╠❂➣ ᴀᴜᴛᴏ ᴀᴅᴅ : ᴏғғ [🔴]\n"
                 if wait["commentOn"] == True: md+="╠❂➣ ᴄᴏᴍᴍᴇɴᴛ : ᴏɴ [🔵]\n"
-                else:md+="╠❂➣ ᴄᴏᴍᴍᴇɴᴛ : ᴏɴ ᴏғғ [🔴]\n╚═════[ ✯ ᴅɴᴀ ʙᴏᴛ ✯ ]═════╝"
-                ririn.sendText(msg.to,md)
+                else:md+="╠❂➣ ᴄᴏᴍᴍᴇɴᴛ : ᴏғғ [🔴]\n"
+                ririn.sendText(msg.to,md + "╚═════[ ✯ ᴅɴᴀ ʙᴏᴛ ✯ ]═════╝")
 
             elif ("Gn " in msg.text):
                if msg._from in admin:
@@ -1723,7 +1689,7 @@ def bot(op):
                   ririn.sendText(msg.to,"╔════[]·✪·ɢʀᴏᴜᴘ ʟɪsᴛ·✪·[]════\n" + h + "╠══════[ ✰ ᴛᴏᴛᴀʟ ✰ ]══════\n║" + str(len(gid)) + "\n╚═════[] ✯ ᴅɴᴀ ʙᴏᴛ ✯ []═════")
             elif msg.text in ["Restart"]:
                if msg._from in Owner:
-                  ririn.sendText(msg.to, "ʙᴏᴛ ʜᴀᴠᴇ ʙᴇᴇɴ ʀᴇsᴛᴀʀt")
+                  ririn.sendText(msg.to, "ʙᴏᴛ ʜᴀᴠᴇ ʙᴇᴇɴ ʀᴇsᴛᴀʀᴛ\nᴡᴀɪᴛ ᴀ ғᴇᴡ ᴍɪɴᴜᴛᴇs")
                   restart_program()
                   print ("Restart")
             elif msg.text in ["cancelinvite","Cancelinvite"]:
@@ -1972,68 +1938,6 @@ def bot(op):
             	if msg._from in Owner:
                     wait['kickMention'] = False
                     ririn.sendText(msg.to,"ᴀᴜᴛᴏ ᴋɪᴄᴋ ᴛᴀɢ ᴏғғ")
-                    
-            elif msg.text in ["Admin add @"]:
-              if msg._from in Owner:
-                _name = msg.text.replace("Admin add @","")
-                _nametarget = _name.rstrip('  ')
-                gs = ririn.getGroup(msg.to)
-                gs = dna1.getGroup(msg.to)
-                gs = dna2.getGroup(msg.to)
-                gs = dna3.getGroup(msg.to)
-                gs = dna4.getGroup(msg.to)
-                gs = dna5.getGroup(msg.to)
-                gs = dna6.getGroup(msg.to)
-                gs = dna7.getGroup(msg.to)
-                gs = dna8.getGroup(msg.to)
-                gs = dna9.getGroup(msg.to)
-                targets = []
-                for g in gs.members:
-                    if _nametarget == g.displayName:
-                        targets.append(g.mid)
-                if targets == []:
-                   random.choice(KAC).sendText(msg.to,"ᴄᴏɴᴛᴀᴄᴛ ᴛɪᴅᴀᴋ ᴅɪ ᴛᴇᴍᴜᴋᴀɴ")
-                else:
-                   for target in targets:
-                        try:
-                            admin.append(target)
-                            ririn.sendText(msg.to,"ᴀᴅᴍɪɴ ᴅɴᴀ ᴅɪᴛᴀᴍʙᴀʜᴋᴀɴ")
-                        except:
-                            pass
-              else:
-              	ririn.sendText(msg.to,"ᴄᴏᴍᴍᴀɴᴅ ᴅᴇɴɪᴇᴅ.")
-              	ririn.sendText(msg.to,"ᴏᴡɴᴇʀ ᴘᴇʀᴍɪssɪᴏɴ ʀᴇǫᴜɪʀᴇᴅ.")
-                
-            elif msg.text in ["Admin remove @"]:
-              if msg._from in Owner:
-                _name = msg.text.replace("Admin remove @","")
-                _nametarget = _name.rstrip('  ')
-                gs = ririn.getGroup(msg.to)
-                gs = dna1.getGroup(msg.to)
-                gs = dna2.getGroup(msg.to)
-                gs = dna3.getGroup(msg.to)
-                gs = dna4.getGroup(msg.to)
-                gs = dna5.getGroup(msg.to)
-                gs = dna6.getGroup(msg.to)
-                gs = dna7.getGroup(msg.to)
-                gs = dna8.getGroup(msg.to)
-                gs = dna9.getGroup(msg.to)
-                targets = []
-                for g in gs.members:
-                    if _nametarget == g.displayName:
-                        targets.append(g.mid)
-                if targets == []:
-                   random.choice(KAC).sendText(msg.to,"ᴄᴏɴᴛᴀᴄᴛ ᴛɪᴅᴀᴋ ᴅɪ ᴛᴇᴍᴜᴋᴀɴ")
-                else:
-                   for target in targets:
-                        try:
-                            admin.remove(target)
-                            ririn.sendText(msg.to,"ᴀᴅᴍɪɴ ᴅɴᴀ ᴅɪʜᴀᴘᴜs")
-                        except:
-                            pass
-              else:
-              	ririn.sendText(msg.to,"ᴄᴏᴍᴍᴀɴᴅ ᴅᴇɴɪᴇᴅ.")
-              	ririn.sendText(msg.to,"ᴏᴡɴᴇʀ ᴘᴇʀᴍɪssɪᴏɴ ʀᴇǫᴜɪʀᴇᴅ.")
 #----------------Fungsi Cek Sider-------------------#
         if op.type == 55:
         	try:

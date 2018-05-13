@@ -508,7 +508,7 @@ def bot(op):
                     ririn.cancelGroupInvitation(op.param1, matched_list)    
 #-------------Invite User By Contact-------------#
             if msg.contentType == 13:
-                if wait['invite'] == True:
+                if wait["invite"] == True:
                     _name = msg.contentMetadata["displayName"]
                     invite = msg.contentMetadata["mid"]
                     groups = ririn.getGroup(msg.to)
@@ -526,15 +526,15 @@ def bot(op):
                             try:
                                 ririn.findAndAddContactsByMid(target)
                                 ririn.inviteIntoGroup(msg.to,[target])
-                                ririn.sendText(msg.to,'Invite ' + _name)
-                                wait['invite'] = False
+                                ririn.sendText(msg.to,"Invite " + _name)
+                                wait["invite"] = False
                                 break                              
                             except:             
-                                    kr.sendText(msg.to,'ᴇʀʀᴏʀ')
-                                    wait['invite'] = False
+                                    ririn.sendText(msg.to,'ᴇʀʀᴏʀ')
+                                    wait["invite"] = False
                                     break
             else:
-                if wait['invite'] == True:
+                if wait["invite"] == True:
                     _name = msg.contentMetadata["displayName"]
                     invite = msg.contentMetadata["mid"]
                     groups = dna1.getGroup(msg.to)
@@ -542,7 +542,7 @@ def bot(op):
                     targets = []
                     for s in groups.members:
                         if _name in s.displayName:
-                            dna1.sendText(msg.to, _name + " sᴜᴅᴀʜ ᴅɪ ᴅᴀʟᴀᴍ ɢʀᴜᴘ")
+                            dna1.sendText(msg.to, _name + "sᴜᴅᴀʜ ᴅɪ ᴅᴀʟᴀᴍ ɢʀᴜᴘ")
                         else:
                             targets.append(invite)
                     if targets == []:
@@ -552,12 +552,12 @@ def bot(op):
                             try:
                                 dna1.findAndAddContactsByMid(target)
                                 dna1.inviteIntoGroup(msg.to,[target])
-                                dna1.sendText(msg.to,'Invite ' + _name)
-                                wait['invite'] = False
+                                dna1.sendText(msg.to,"Invite " + _name)
+                                wait["invite"] = False
                                 break                              
                             except:             
                                     dna1.sendText(msg.to,'ᴇʀʀᴏʀ')
-                                    wait['invite'] = False
+                                    wait["invite"] = False
                                     break
 #----------------Notif Leave Group----------------#
         if op.type == 15:
@@ -938,7 +938,7 @@ def bot(op):
                 else:
                     ririn.sendChatChecked(msg.to,msg.id)
                     
-        if msg.contentType == 16:
+        elif msg.contentType == 16:
         	if wait["likeOn"] == True:
         		url = msg.contentMetadata["postEndUrl"]
         		ririn.like(url[25:58], url[66:], likeType=1005)

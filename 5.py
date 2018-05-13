@@ -216,7 +216,6 @@ wait = {
     "ProtectInvite":True,
     "Protectcancel":True,
     "protectionOn":True,
-    "alwaysRead":False, 
     "atjointicket":True,
     "invite":{},
     }
@@ -508,7 +507,7 @@ def bot(op):
                     ririn.cancelGroupInvitation(op.param1, matched_list)    
 #-------------Invite User By Contact-------------#
             if msg.contentType == 13:
-                if wait['invite'] == True:
+                if wait["invite"] == True:
                     _name = msg.contentMetadata["displayName"]
                     invite = msg.contentMetadata["mid"]
                     groups = ririn.getGroup(msg.to)
@@ -526,15 +525,15 @@ def bot(op):
                             try:
                                 ririn.findAndAddContactsByMid(target)
                                 ririn.inviteIntoGroup(msg.to,[target])
-                                ririn.sendText(msg.to,'Invite ' + _name)
-                                wait['invite'] = False
+                                ririn.sendText(msg.to,"Invite " + _name)
+                                wait["invite"] = False
                                 break                              
                             except:             
-                                    kr.sendText(msg.to,'ᴇʀʀᴏʀ')
-                                    wait['invite'] = False
+                                    ririn.sendText(msg.to,'ᴇʀʀᴏʀ')
+                                    wait["invite"] = False
                                     break
             else:
-                if wait['invite'] == True:
+                if wait["invite"] == True:
                     _name = msg.contentMetadata["displayName"]
                     invite = msg.contentMetadata["mid"]
                     groups = dna1.getGroup(msg.to)
@@ -542,7 +541,7 @@ def bot(op):
                     targets = []
                     for s in groups.members:
                         if _name in s.displayName:
-                            dna1.sendText(msg.to, _name + " sᴜᴅᴀʜ ᴅɪ ᴅᴀʟᴀᴍ ɢʀᴜᴘ")
+                            dna1.sendText(msg.to, _name + "sᴜᴅᴀʜ ᴅɪ ᴅᴀʟᴀᴍ ɢʀᴜᴘ")
                         else:
                             targets.append(invite)
                     if targets == []:
@@ -552,12 +551,12 @@ def bot(op):
                             try:
                                 dna1.findAndAddContactsByMid(target)
                                 dna1.inviteIntoGroup(msg.to,[target])
-                                dna1.sendText(msg.to,'Invite ' + _name)
-                                wait['invite'] = False
+                                dna1.sendText(msg.to,"Invite " + _name)
+                                wait["invite"] = False
                                 break                              
                             except:             
                                     dna1.sendText(msg.to,'ᴇʀʀᴏʀ')
-                                    wait['invite'] = False
+                                    wait["invite"] = False
                                     break
 #----------------Notif Leave Group----------------#
         if op.type == 15:
@@ -567,7 +566,31 @@ def bot(op):
         	ririn.sendContact(op.param1, op.param2)
         	ririn.sendImageWithURL(op.param1, "http://dl.profile.line-cdn.net{}".format(dan.picturePath))
 #------------------Comment Like-------------------#
-
+        if msg.contentType == 16:
+        	if wait["likeOn"] == True:
+        		url = msg.contentMetadata["postEndUrl"]
+        		ririn.like(url[25:58], url[66:], likeType=1005)
+        		dna1.like(url[25:58], url[66:], likeType=1002)
+        		dna2.like(url[25:58], url[66:], likeType=1004)
+        		dna3.like(url[25:58], url[66:], likeType=1003)
+        		dna4.like(url[25:58], url[66:], likeType=1001)
+        		dna5.like(url[25:58], url[66:], likeType=1005)
+        		dna6.like(url[25:58], url[66:], likeType=1002)
+        		dna7.like(url[25:58], url[66:], likeType=1004)
+        		dna8.like(url[25:58], url[66:], likeType=1003)
+        		dna9.like(url[25:58], url[66:], likeType=1001)
+        		ririn.comment(url[25:58], url[66:], wait["comment"])
+        		dna1.comment(url[25:58], url[66:], wait["comment"])
+        		dna2.comment(url[25:58], url[66:], wait["comment"])
+        		dna3.comment(url[25:58], url[66:], wait["comment"])
+        		dna4.comment(url[25:58], url[66:], wait["comment"])
+        		dna5.comment(url[25:58], url[66:], wait["comment"])
+        		dna6.comment(url[25:58], url[66:], wait["comment"])
+        		dna7.comment(url[25:58], url[66:], wait["comment"])
+        		dna8.comment(url[25:58], url[66:], wait["comment"])
+        		dna9.comment(url[25:58], url[66:], wait["comment"])
+        		ririn.sendText(msg.to,"Like Success")
+        		wait['likeOn'] = False
 #-----------------Notif Join Group------------------#
         if op.type == 17:
         	dan = ririn.getContact(op.param2)
@@ -926,43 +949,9 @@ def bot(op):
         if op.type == 24:
             if wait["leaveRoom"] == True:
                 ririn.leaveRoom(op.param1)
-#------------------Receive Message-----------------#   
+#------------------Receive Message-----------------#
         if op.type == 26:
             msg = op.message
-
-
-
-            if wait["alwaysRead"] == True:
-                if msg.toType == 0:
-                    ririn.sendChatChecked(msg._from,msg.id)
-                else:
-                    ririn.sendChatChecked(msg.to,msg.id)
-                    
-        if msg.contentType == 16:
-        	if wait["likeOn"] == True:
-        		url = msg.contentMetadata["postEndUrl"]
-        		ririn.like(url[25:58], url[66:], likeType=1005)
-        		dna1.like(url[25:58], url[66:], likeType=1002)
-        		dna2.like(url[25:58], url[66:], likeType=1004)
-        		dna3.like(url[25:58], url[66:], likeType=1003)
-        		dna4.like(url[25:58], url[66:], likeType=1001)
-        		dna5.like(url[25:58], url[66:], likeType=1005)
-        		dna6.like(url[25:58], url[66:], likeType=1002)
-        		dna7.like(url[25:58], url[66:], likeType=1004)
-        		dna8.like(url[25:58], url[66:], likeType=1003)
-        		dna9.like(url[25:58], url[66:], likeType=1001)
-        		ririn.comment(url[25:58], url[66:], wait["comment"])
-        		dna1.comment(url[25:58], url[66:], wait["comment"])
-        		dna2.comment(url[25:58], url[66:], wait["comment"])
-        		dna3.comment(url[25:58], url[66:], wait["comment"])
-        		dna4.comment(url[25:58], url[66:], wait["comment"])
-        		dna5.comment(url[25:58], url[66:], wait["comment"])
-        		dna6.comment(url[25:58], url[66:], wait["comment"])
-        		dna7.comment(url[25:58], url[66:], wait["comment"])
-        		dna8.comment(url[25:58], url[66:], wait["comment"])
-        		dna9.comment(url[25:58], url[66:], wait["comment"])
-        		ririn.sendText(msg.to,"Like Success")
-        		wait['likeOn'] = False
 #------------------Receive Come Bye---------------#
         if op.type == 26:
             msg = op.message
@@ -1705,14 +1694,6 @@ def bot(op):
                         cocoa += mm + "\n"
                     ririn.sendText(msg.to,cocoa + "")
 #-----------------------Key Owner-----------------------#
-            elif msg.text in ["Alwaysread on"]:
-                wait["alwaysRead"] = True
-                ririn.sendText(msg.to,"Always Read Sudah Aktif")
-
-            elif msg.text in ["Alwaysread off"]:
-                wait["alwaysRead"] = False
-                ririn.sendText(msg.to,"Always Read Sudah Di Nonaktifkan") 
-
             elif msg.text in ["Glist"]:
                if msg._from in Owner:
                   dna1.sendText(msg.to,"「ɢʀᴏᴜᴘ」\nᴡᴀɪᴛɪɴɢ ғᴏʀ : ɢʀᴏᴜᴘ ʟɪsᴛ")
@@ -2035,49 +2016,6 @@ def bot(op):
               	ririn.sendText(msg.to,"ᴄᴏᴍᴍᴀɴᴅ ᴅᴇɴɪᴇᴅ.")
               	ririn.sendText(msg.to,"ᴏᴡɴᴇʀ ᴘᴇʀᴍɪssɪᴏɴ ʀᴇǫᴜɪʀᴇᴅ.")
 #----------------Fungsi Cek Sider-------------------#
-        if op.type == 55:
-        	try:
-        		group_id = op.param1
-        		user_id=op.param2
-        		subprocess.Popen('echo "'+ user_id+'|'+str(op.createdTime)+'" >> dataSeen/%s.txt' % group_id, shell=True, stdout=subprocess.PIPE, )
-        	except Exception as e:
-        		print(e)
-	      
-        if op.type == 55:
-                try:
-                    if cctv['cyduk'][op.param1]==True:
-                        if op.param1 in cctv['point']:
-                            Name = ririn.getContact(op.param2).displayName
-                            Name = dna1.getContact(op.param2).displayName
-                            Name = dna2.getContact(op.param2).displayName
-                            Name = dna3.getContact(op.param2).displayName
-                            Name = dna4.getContact(op.param2).displayName
-                            Name = dna5.getContact(op.param2).displayName
-                            Name = dna6.getContact(op.param2).displayName
-                            Name = dna7.getContact(op.param2).displayName
-                            Name = dna8.getContact(op.param2).displayName
-                            Name = dna9.getContact(op.param2).displayName
-                            if Name in cctv['sidermem'][op.param1]:
-                                pass
-                            else:
-                                cctv['sidermem'][op.param1] += "\n• " + Name
-                                if " " in Name:
-                                    nick = Name.split(' ')
-                                    if len(nick) == 2:
-                                        random.choice(KAC).sendText(op.param1, "Haii " + "☞ " + nick[0] + " ☜" + "\nNgintip Aja Niih. . .\nChat Kek Idiih (-__-)   ")
-                                    else:
-                                        random.choice(KAC).sendText(op.param1, "Haii " + "☞ " + nick[1] + " ☜" + "\nBetah Banget Jadi Penonton. . .\nChat Napa (-__-)   ")
-                                else:
-                                    random.choice(KAC).sendText(op.param1, "Haii " + "☞ " + Name + " ☜" + "\nNgapain Kak Ngintip Aja???\nSini Gabung Chat...   ")
-                        else:
-                            pass
-                    else:
-                        pass
-                except:
-                    pass
-
-        else:
-            pass      
 #----------------Fungsi Cek Sider-------------------#
         if op.type == 59:
             print(op)

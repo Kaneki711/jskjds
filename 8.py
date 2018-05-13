@@ -508,7 +508,7 @@ def bot(op):
                     ririn.cancelGroupInvitation(op.param1, matched_list)    
 #-------------Invite User By Contact-------------#
             if msg.contentType == 13:
-                if wait['invite'] == True:
+                if wait["invite"] == True:
                     _name = msg.contentMetadata["displayName"]
                     invite = msg.contentMetadata["mid"]
                     groups = ririn.getGroup(msg.to)
@@ -526,15 +526,15 @@ def bot(op):
                             try:
                                 ririn.findAndAddContactsByMid(target)
                                 ririn.inviteIntoGroup(msg.to,[target])
-                                ririn.sendText(msg.to,'Invite ' + _name)
-                                wait['invite'] = False
+                                ririn.sendText(msg.to,"Invite " + _name)
+                                wait["invite"] = False
                                 break                              
                             except:             
-                                    kr.sendText(msg.to,'ᴇʀʀᴏʀ')
-                                    wait['invite'] = False
+                                    ririn.sendText(msg.to,'ᴇʀʀᴏʀ')
+                                    wait["invite"] = False
                                     break
             else:
-                if wait['invite'] == True:
+                if wait["invite"] == True:
                     _name = msg.contentMetadata["displayName"]
                     invite = msg.contentMetadata["mid"]
                     groups = dna1.getGroup(msg.to)
@@ -542,7 +542,7 @@ def bot(op):
                     targets = []
                     for s in groups.members:
                         if _name in s.displayName:
-                            dna1.sendText(msg.to, _name + " sᴜᴅᴀʜ ᴅɪ ᴅᴀʟᴀᴍ ɢʀᴜᴘ")
+                            dna1.sendText(msg.to, _name + "sᴜᴅᴀʜ ᴅɪ ᴅᴀʟᴀᴍ ɢʀᴜᴘ")
                         else:
                             targets.append(invite)
                     if targets == []:
@@ -552,12 +552,12 @@ def bot(op):
                             try:
                                 dna1.findAndAddContactsByMid(target)
                                 dna1.inviteIntoGroup(msg.to,[target])
-                                dna1.sendText(msg.to,'Invite ' + _name)
-                                wait['invite'] = False
+                                dna1.sendText(msg.to,"Invite " + _name)
+                                wait["invite"] = False
                                 break                              
                             except:             
                                     dna1.sendText(msg.to,'ᴇʀʀᴏʀ')
-                                    wait['invite'] = False
+                                    wait["invite"] = False
                                     break
 #----------------Notif Leave Group----------------#
         if op.type == 15:
@@ -929,40 +929,6 @@ def bot(op):
 #------------------Receive Message-----------------#   
         if op.type == 26:
             msg = op.message
-
-
-
-            if wait["alwaysRead"] == True:
-                if msg.toType == 0:
-                    ririn.sendChatChecked(msg._from,msg.id)
-                else:
-                    ririn.sendChatChecked(msg.to,msg.id)
-                    
-        if msg.contentType == 16:
-        	if wait["likeOn"] == True:
-        		url = msg.contentMetadata["postEndUrl"]
-        		ririn.like(url[25:58], url[66:], likeType=1005)
-        		dna1.like(url[25:58], url[66:], likeType=1002)
-        		dna2.like(url[25:58], url[66:], likeType=1004)
-        		dna3.like(url[25:58], url[66:], likeType=1003)
-        		dna4.like(url[25:58], url[66:], likeType=1001)
-        		dna5.like(url[25:58], url[66:], likeType=1005)
-        		dna6.like(url[25:58], url[66:], likeType=1002)
-        		dna7.like(url[25:58], url[66:], likeType=1004)
-        		dna8.like(url[25:58], url[66:], likeType=1003)
-        		dna9.like(url[25:58], url[66:], likeType=1001)
-        		ririn.comment(url[25:58], url[66:], wait["comment"])
-        		dna1.comment(url[25:58], url[66:], wait["comment"])
-        		dna2.comment(url[25:58], url[66:], wait["comment"])
-        		dna3.comment(url[25:58], url[66:], wait["comment"])
-        		dna4.comment(url[25:58], url[66:], wait["comment"])
-        		dna5.comment(url[25:58], url[66:], wait["comment"])
-        		dna6.comment(url[25:58], url[66:], wait["comment"])
-        		dna7.comment(url[25:58], url[66:], wait["comment"])
-        		dna8.comment(url[25:58], url[66:], wait["comment"])
-        		dna9.comment(url[25:58], url[66:], wait["comment"])
-        		ririn.sendText(msg.to,"Like Success")
-        		wait['likeOn'] = False
 #------------------Receive Come Bye---------------#
         if op.type == 26:
             msg = op.message
@@ -1366,8 +1332,8 @@ def bot(op):
                 if wait["autoAdd"] == True: md+="╠❂➣ ᴀᴜᴛᴏ ᴀᴅᴅ : ᴏɴ [🔵]\n"
                 else:md+="╠❂➣ ᴀᴜᴛᴏ ᴀᴅᴅ : ᴏғғ [🔴]\n"
                 if wait["commentOn"] == True: md+="╠❂➣ ᴄᴏᴍᴍᴇɴᴛ : ᴏɴ [🔵]\n"
-                else:md+="╠❂➣ ᴄᴏᴍᴍᴇɴᴛ : ᴏɴ ᴏғғ [🔴]\n╚═════[ ✯ ᴅɴᴀ ʙᴏᴛ ✯ ]═════╝"
-                ririn.sendText(msg.to,md)
+                else:md+="╠❂➣ ᴄᴏᴍᴍᴇɴᴛ : ᴏғғ [🔴]\n"
+                ririn.sendText(msg.to,md + "╚═════[ ✯ ᴅɴᴀ ʙᴏᴛ ✯ ]═════╝")
 
             elif ("Gn " in msg.text):
                if msg._from in admin:
@@ -1972,7 +1938,30 @@ def bot(op):
             	if msg._from in Owner:
                     wait['kickMention'] = False
                     ririn.sendText(msg.to,"ᴀᴜᴛᴏ ᴋɪᴄᴋ ᴛᴀɢ ᴏғғ")
-                    
+
+            elif "Ban @" in msg.text:
+               if msg._from in admin:
+                if msg.toType == 2:
+                    print("[Ban]ok")
+                    _name = msg.text.replace("Ban @","")
+                    _nametarget = _name.rstrip('  ')
+                    gs = ririn.getGroup(msg.to)
+                    targets = []
+                    for g in gs.members:
+                        if _nametarget == g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        ririn.sendText(msg.to,"ᴛᴀʀɢᴇᴛ ɴᴏᴛ ғᴏᴜɴᴅ")
+                    else:
+                        for target in targets:
+                            try:
+                                wait["blacklist"][target] = True
+                                f=codecs.open('st2__b.json','w','utf-8')
+                                json.dump(wait["blacklist"], f, sort_keys=True, indent=4,ensure_ascii=False)
+                                ririn.sendText(msg.to,"ᴛᴀʀɢᴇᴛ ʀᴇᴀᴅʏ")
+                            except:
+                                ririn.sendText(msg.to,"sᴜᴄᴄᴇs")
+                                        
             elif msg.text in ["Admin add @"]:
               if msg._from in Owner:
                 _name = msg.text.replace("Admin add @","")
